@@ -1,1 +1,437 @@
-<!doctype html><html lang="en"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge"><link rel="shortcut icon" href="/static/favicon.ico"><title>菜虫虫</title><link href="/static/css/app.c64eadfc8d3abfc9d85514dba4054813.css" rel="stylesheet"></head><body><div id="app"></div><script type="text/javascript" src="/static/js/manifest.992b63bf2abbf3194771.js"></script><script type="text/javascript" src="/static/js/vendor.e12dc8c9af1f7aa12436.js"></script><script type="text/javascript" src="/static/js/app.bc036f9167871d39aecf.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Android通知栏操作 | 菜虫虫</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="Android通知提示">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android通知栏操作">
+<meta property="og:url" content="http://yoursite.com/2019/07/13/android通知栏/index.html">
+<meta property="og:site_name" content="菜虫虫">
+<meta property="og:description" content="Android通知提示">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-13T02:42:57.151Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android通知栏操作">
+<meta name="twitter:description" content="Android通知提示">
+  
+    <link rel="alternate" href="/atom.xml" title="菜虫虫" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/touxiang.webp">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <script>
+  let antiquityStorage = window.sessionStorage.getItem('antiquitySessionStorage');
+  if (antiquityStorage == '' || antiquityStorage == null) {
+    var antiquityLoader = '<div id="loaderbox"><div class="loader"><div class="load-roll"><div class="load-top"></div><div class="load-right"></div><div class="load-bottom"></div></div></div></div>';
+    document.write(antiquityLoader);
+    document.body.style.overflow = 'hidden'
+  }
+  </script>
+</head>
+</html>
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="/images/bg_1.webp">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-android通知栏" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      Android通知栏操作
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/07/13/android通知栏/" class="article-date">
+  <time datetime="2019-07-13T02:25:42.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h2 id="Android通知提示"><a href="#Android通知提示" class="headerlink" title=" Android通知提示"></a><center> Android通知提示<center></center></center></h2><a id="more"></a>
+
+<pre><code>    之前项目一直使用极光推送，极光推送自带通知提示，由于项目需求，
+极光的推送提示不能满足要求，所以只能自己完成推送提示操作。</code></pre><hr>
+<pre><code>import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+
+import com.leiren.airport.plat.R;
+import com.leiren.airport.plat.activity.HomeActivity;
+
+import java.util.Date;
+
+public class CustomNotification {
+
+//自定义通知对象
+private static CustomNotification customNotification = null;
+
+//通知管理器
+private static NotificationManager notificationManager = null;
+
+//通知ID
+private static int notifiId = 0;
+
+//通知标签
+private static String notifiTag = &quot;&quot;;
+static {
+    customNotification = new CustomNotification();
+}
+
+private CustomNotification(){
+    super();
+}
+
+public static CustomNotification getInstance(){
+    return customNotification == null? new CustomNotification():customNotification;
+}
+
+
+public void builderNotification(Context context,String sender,String title, String content, String extra){
+    //此处判断安卓版本号是否大于或者等于Android8.0
+    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) {
+        //通知栏提示
+        notification_8(context,sender,title,content,extra);
+    } else {
+        //通知栏提示
+        commonNotification(context,sender,title,content,extra);
+    }
+}
+
+/**
+ * Android5.0-8.0以下
+ * @param context 上下文对象
+ * @param sender    一般为app名称
+ * @param title     推送标题
+ * @param content   推送内容
+ */
+@TargetApi(21)
+private void commonNotification(Context context,String sender,String title, String content, String extra){
+    //获取通知管理器，用于发送通知
+    notificationManager = notificationManager == null?
+            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE):notificationManager;
+    //发送通知
+    sendNotification(context,sender,title,content,extra);
+}
+
+/**
+ * android8.0以上
+ * @param context
+ * @param sender
+ * @param title
+ * @param content
+ * @param extra
+ */
+@TargetApi(Build.VERSION_CODES.O)
+public void notification_8(Context context,String sender,String title, String content, String extra){
+    //创建通道对象
+    NotificationChannel channel = new NotificationChannel(&quot;com.leiren.airplat&quot;, &quot;其他&quot;, NotificationManager.IMPORTANCE_HIGH);
+    notificationManager = notificationManager == null?
+            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE):notificationManager;
+    //设置通道
+    notificationManager.createNotificationChannel(channel);
+    //发送通知
+    sendNotification(context,sender,title,content,extra);
+}
+
+
+
+private void sendNotification
+(Context context, String sender, String title,String content,String extra){
+    // 创建一个Notification对象
+    final NotificationCompat.Builder notification =
+             new NotificationCompat.Builder(context);
+    // 设置打开该通知，该通知自动消失
+    notification.setAutoCancel(true);
+    // 设置显示在状态栏的通知提示信息
+    notification.setTicker(sender);
+    // 设置通知的小图标
+    notification.setSmallIcon(R.drawable.ic_launcher);
+    //设置下拉列表中的大图标
+    notification.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.drawable.ic_launcher));
+    // 设置通知内容的标题
+    notification.setContentTitle(title);
+    // 设置通知内容
+    notification.setContentText(content);
+    //设置发送时间
+    notification.setWhen(System.currentTimeMillis());
+    notification.setPriority(Notification.PRIORITY_MAX);//设置通知的优先级
+    //向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合
+    notification.setDefaults(Notification.DEFAULT_ALL);
+
+    //设置通知的等级
+    // VISIBILITY_PUBLIC: 任何情况的显示
+    //VISIBILITY_PRIVATE: 只有在没有锁屏时显示
+    //VISIBILITY_SECRET: 在安全锁下或者没锁屏下显示
+    notification.setVisibility(Notification.VISIBILITY_PUBLIC);
+
+    // 关联PendingIntent 设置之后会一直显示悬浮通知不会消失
+    //notification.setFullScreenIntent(pIntent1, true);
+
+    // 创建一个启动其他Activity的Intent
+    Intent intent = new Intent(&quot;cn.jpush.android.intent.NOTIFICATION_OPENED&quot;);
+    intent.putExtra(&quot;cn.jpush.android.EXTRA&quot;,extra);
+    PendingIntent pIntent = PendingIntent.getBroadcast(context, 1, intent, 0);
+
+
+    Intent intent1 = new Intent(context, HomeActivity.class);
+    intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+    //设置通知栏点击跳转
+    notification.setContentIntent(pIntent);
+
+    //发送通知
+    notifiId = (int) new Date().getTime();//通知Id
+    notifiTag = notifiId+&quot;leiren&quot;;//通知标签
+    notificationManager.notify(notifiTag,notifiId, notification.build());
+    }
+}</code></pre><p>遇见的问题：</p>
+<pre><code>在写完之后发现android9.0一直没有横幅提示，而在android7.0上边横幅提示一直不能自动消失，百度了很多资料，
+实现横幅提示有两种方法：
+
+1、设置通知的优先级
+2、setFullScreenIntent方法
+
+我把两个都设置了，结果出现了上述问题，最后我把setFullScreenIntent方法注释了，android9.0的横幅提示就出现了，
+同时android7.0的横幅提示也会自动消失。</code></pre>
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+      <a href="/2019/07/15/asyncTask多线程学习/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            asyncTask多线程学习
+          
+        </div>
+      </a>
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2019/07/04/hexo搭建第一天/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">通过包名判断Android应用是否在后台运行</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '899a8cf35eb9aa138feb',
+    client_secret: '7562de49365f594817c3f8055a52e2f807bb7c10',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.webp" title="菜虫虫"></img>
+    <h3 class="avatar-name">
+      
+        菜虫虫
+      
+    </h3>
+    <p class="avatar-slogan">
+      一只努力码代码的菜虫虫。
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/">android</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/android/" style="font-size: 20px;">android</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/17/装饰者模式/">装饰者模式</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/31/activity四种启动模式/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/31/android启动页/">android日记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/17/Adapter/">Adapter</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/16/rabbitMQ/">rabbitMQ</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+        <a style="display: block;" href="https://wangjin-shuai.github.io/" title target='_blank'
+        >菜虫虫</a>
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2019 菜虫虫 &nbsp;&nbsp;
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">菜虫虫告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
