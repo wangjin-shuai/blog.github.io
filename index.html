@@ -138,6 +138,57 @@
 </article>
 
   
+    <article id="post-activity四种启动模式" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/31/activity四种启动模式/">activity四种启动模式</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2019/07/31/activity四种启动模式/" class="article-date">
+  <time datetime="2019-07-31T03:01:09.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+
+<p>Activity的4中启动模式</p>
+<p>Activity的android:launchMode属性</p>
+<pre><code>1、standard：标准模式，默认
+2、singleTop：Task栈顶复用模式
+3、singleTask：Task栈内服用模式
+3、singleInstance：全局单例模式</code></pre><p>standard：</p>
+<p>Activity是由任务栈管理的，每启动一个Activity每启动一个Activity，就会被放入栈中，按返回键，就会从栈顶移除一个Activity</p>
+<p>是默认的启动模式，即标准模式，每启动一个Activity，都会创建一个新的实例</p>
+<p>Fragment：</p>
+<pre><code>Fragment依赖于Activity，当Activty被销毁，Fragment也会被销毁
+Frament通过getActivity()可以获取所在的Activity；Activity通过FragmentManager的findFragmentById()或findFragmentByTag()获取Fragment
+Fragment和Activity时多对多的关系</code></pre>
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-android启动页" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -171,55 +222,6 @@
             <a href="/2019/07/31/android启动页/#more">阅读全文</a>
           </p>
         
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-activity四种启动模式" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/31/activity四种启动模式/">activity四种启动模式</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2019/07/31/activity四种启动模式/" class="article-date">
-  <time datetime="2019-07-31T03:01:09.000Z" itemprop="datePublished">2019-07-31</time>
-</a>
-    
-    
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
-
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <a id="more"></a>
-<p>Activity的4中启动模式</p>
-<p>Activity的android:launchMode属性</p>
-<pre><code>1、standard：标准模式，默认
-2、singleTop：Task栈顶复用模式
-3、singleTask：Task栈内服用模式
-3、singleInstance：全局单例模式</code></pre><p>standard：</p>
-<p>Activity是由任务栈管理的，每启动一个Activity每启动一个Activity，就会被放入栈中，按返回键，就会从栈顶移除一个Activity</p>
-<p>是默认的启动模式，即标准模式，每启动一个Activity，都会创建一个新的实例</p>
-<p>Fragment：</p>
-<pre><code>Fragment依赖于Activity，当Activty被销毁，Fragment也会被销毁
-Frament通过getActivity()可以获取所在的Activity；Activity通过FragmentManager的findFragmentById()或findFragmentByTag()获取Fragment
-Fragment和Activity时多对多的关系</code></pre>
       
     </div>
     
@@ -295,19 +297,12 @@ Fragment和Activity时多对多的关系</code></pre>
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <a id="more"></a>
-
-<h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>RabbitMQ是一个erlang开发的基于AMQP（Advanced Message Queue）协议的开源实现。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面都非常的优秀，是当前最主流的消息中间件之一</p>
-<hr>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>AMQP：高级消息队列协议，它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。</p>
-<p>RabbitMQ最初起源于金融系统，用于在分布式系统中存储准发消息，在易用性、扩展性、高可用性等方面表现不俗</p>
-<p>1、可靠性<br><br>    RabbitMQ使用一些机制来保证可靠性、如持久化、传输确认、发布确认。</p>
-<p>2、灵活的路由<br><br>在消息进入队列之前，通过Exchange来路由消息的。对于典型的路由功能，RabbitMQ已经提供了一些内置Exchange来实现，针对更复杂的路由功能，可以将过个Exchange绑定在一起，也通过插件机制实现自己的Exchange。</p>
-<p>3、消息集群<br><br>多个RabbitMQ服务器可以组成一个集群</p>
-<p>4、高可用<br><br>队列可以在集群中的机器上进行镜像，使得在部分节点出问题的情况下队列任然可用。</p>
-<p>5、多语言客户端<br><br>RabbitMQ几乎支持多有常用语言，比如Java，.NET、Ruby等</p>
-<p>所有MQ产品从模型抽象上来说都是一样的过程：消费者订阅某个队列，生产者创建消息，然后发布到队列中，最后将消息发送到监听中的消息者。</p>
-
+        <h1 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h1>
+        
+          <p class="article-more-link">
+            <a href="/2019/07/16/rabbitMQ/#more">阅读全文</a>
+          </p>
+        
       
     </div>
     
@@ -551,11 +546,11 @@ Fragment和Activity时多对多的关系</code></pre>
           </li>
         
           <li>
-            <a href="/2019/07/31/android启动页/">android日记</a>
+            <a href="/2019/07/31/activity四种启动模式/">activity四种启动模式</a>
           </li>
         
           <li>
-            <a href="/2019/07/31/activity四种启动模式/">activity四种启动模式</a>
+            <a href="/2019/07/31/android启动页/">android日记</a>
           </li>
         
           <li>
