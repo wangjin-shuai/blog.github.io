@@ -5,23 +5,23 @@
   
 
   
-  <title>android启动页 | 菜虫虫</title>
+  <title>springboot注解 | 菜虫虫</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
-  <meta name="description" content="android启动页">
-<meta name="keywords" content="android">
+  <meta name="description" content="spring boot 注解">
+<meta name="keywords" content="spring boot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android启动页">
-<meta property="og:url" content="http://yoursite.com/2019/07/31/android启动页/index.html">
+<meta property="og:title" content="springboot注解">
+<meta property="og:url" content="http://yoursite.com/2019/10/03/springboot注解/index.html">
 <meta property="og:site_name" content="菜虫虫">
-<meta property="og:description" content="android启动页">
+<meta property="og:description" content="spring boot 注解">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-02T08:53:23.326Z">
+<meta property="og:updated_time" content="2019-10-03T07:51:28.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android启动页">
-<meta name="twitter:description" content="android启动页">
+<meta name="twitter:title" content="springboot注解">
+<meta name="twitter:description" content="spring boot 注解">
   
     <link rel="alternate" href="/atom.xml" title="菜虫虫" type="application/atom+xml">
   
@@ -66,25 +66,25 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-right">
-        <section id="main"><article id="post-android启动页" class="article global-container article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-springboot注解" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 class="article-title" itemprop="name">
-      android启动页
+      springboot注解
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2019/07/31/android启动页/" class="article-date">
-  <time datetime="2019-07-31T03:01:09.000Z" itemprop="datePublished">2019-07-31</time>
+    <a href="/2019/10/03/springboot注解/" class="article-date">
+  <time datetime="2019-10-03T06:31:20.000Z" itemprop="datePublished">2019-10-03</time>
 </a>
     
     
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/">spring boot</a></li></ul>
 
   </div>
   
@@ -97,18 +97,55 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1 id="android启动页"><a href="#android启动页" class="headerlink" title="android启动页"></a>android启动页</h1><a id="more"></a>
+        <h1 id="spring-boot-注解"><a href="#spring-boot-注解" class="headerlink" title="spring boot 注解"></a>spring boot 注解</h1><a id="more"></a>
 
-<p>我们常用的Android启动页共有四种解决方案：</p>
-<pre><code>1、属性动画ObjectAnimator实现
-2、补间动画实现
-3、定时器Timer
-4、Handler+Thread----AsybTask</code></pre><h1 id="MVP架构设计与实现"><a href="#MVP架构设计与实现" class="headerlink" title="MVP架构设计与实现"></a><center>MVP架构设计与实现</center></h1><pre><code>1、什么是MVP？
-    MVP是一种项目架构设计模式
-    其实MVP本质就是将View和Model完全隔离出来，通过Presenter统一调度管理
-    M是Model，就是数据
-    V是UI界面（Activity、Fragment、视图）
-    P是Persenter，是调度者</code></pre><h2 id="mvp和mvc的区别"><a href="#mvp和mvc的区别" class="headerlink" title="mvp和mvc的区别"></a>mvp和mvc的区别</h2><pre><code>mvp就是mvc的改造版</code></pre>
+<p>@Configuration：告诉Spring这是一个配置类</p>
+<p>@Bean : 给容器注册一个Bean；类型为返回值的类型，id默认是用方法名作为id</p>
+<p>@ComponentScan(value=””)：包扫描</p>
+<pre><code>1、 value：指定需要扫描的包
+2、 excludeFilters = Filter[]：指定扫描的时候排除的规则
+    例如：
+        excludeFilters = {
+        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
+
+        //如果需要过滤多个条件
+        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class}) //排除controller注解的类    
+    }
+3、 includeFilters = Filter[]：指定扫描的时候只需要包含的哪些组件
+    例如：
+    includeFilters = {
+        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
+
+        //如果需要过滤多个条件
+        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class},useDefaultFilters = false) //排除controller注解的类    
+    }</code></pre><p>@Filter：过滤规则</p>
+<pre><code>FilterType.ANNONTATION：按照注释进行过滤
+FilterType.ASSIGNABLE_TYPE: 按照给定的类型进行过滤（@Filter(type=FilterType.ASSIGNABLE_TYPE,classes={xxxService.class}）</code></pre><p>@ComponentScans(value = {})：指定多个componentScan规则</p>
+<p>@Scope：设置组件的作用域（springboot 默认bean对象为单例）</p>
+<h2 id="自定义TypeFilter指定过滤规则-FilterType-CUSTOM"><a href="#自定义TypeFilter指定过滤规则-FilterType-CUSTOM" class="headerlink" title="自定义TypeFilter指定过滤规则 FilterType.CUSTOM"></a>自定义TypeFilter指定过滤规则 FilterType.CUSTOM</h2><pre><code>public class MyTypeFilter implements TypeFilter{
+
+    /**
+        metadataReader: 读取到当前正在扫描的类的信息
+        metadataReaderFactory: 可以获取到其他任何类信息的
+    */
+    @Override
+    public boolean match(MetadataReader metadataReader,
+    MetadataReaderFactory metadataReaderFactory) throw IOException {
+
+        //获取当前类的注解的信息
+        AnnotationMetadata = annotionMetadata = metadataReader.getAnnotationMetadata();
+
+        //获取当前正在扫描的类的信息
+        ClassMetadata classMetadata = metadataReader.getClassMetadata();
+
+        //获取当前类的资源(类的路径)
+        Resource resource = metadataReader.getResource();
+
+        //    进行自定义判断
+
+        return false;//false 表示不匹配
+    }
+}</code></pre>
       
     </div>
     
@@ -122,11 +159,11 @@
 <nav id="article-nav">
   <div class="article-nav-block">
     
-      <a href="/2019/07/31/activity四种启动模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <a href="/2019/10/04/动态代理/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption"></strong>
         <div class="article-nav-title">
           
-            activity四种启动模式
+            动态代理
           
         </div>
       </a>
@@ -134,8 +171,8 @@
   </div>
   <div class="article-nav-block">
     
-      <a href="/2019/07/17/Adapter/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Adapter</div>
+      <a href="/2019/09/01/代码整洁知道-01/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">代码整洁之道</div>
         <strong class="article-nav-caption"></strong>
       </a>
     
