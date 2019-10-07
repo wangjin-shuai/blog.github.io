@@ -2852,7 +2852,7 @@ function renderHeader(_ref, instance) {
     return reaction.content === 'heart' && reaction.user.login === user.login;
   });
   likeButton.className = 'gitment-header-like-btn';
-  likeButton.innerHTML = '\n    ';
+  likeButton.innerHTML = '\n    ' + _icons.heart + '\n    ' + (likedReaction ? '取消喜欢' : '喜欢') + '\n    ' + (meta.reactions && meta.reactions.heart ? ' \u2022 <strong>' + meta.reactions.heart + '</strong> 人喜欢' : '') + '\n  ';
 
   if (likedReaction) {
     likeButton.classList.add('liked');
