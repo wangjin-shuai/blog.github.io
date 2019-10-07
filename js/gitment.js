@@ -3496,7 +3496,8 @@ var Gitment = function () {
         title: title,
         labels: labels.concat(['gitment', id]),
         // body: link + '  ' + desc
-        body: desc
+        body: desc,
+        milestone: 1,
       }).then(function (meta) {
         _this5.state.meta = meta;
         return meta;
