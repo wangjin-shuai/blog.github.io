@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Adapter</title>
-    <url>/2019/07/17/Adapter/</url>
+    <url>/blog/2019/07/17/Adapter/</url>
     <content><![CDATA[<p>Adapter</p>
 <a id="more"></a>
 
@@ -14,28 +14,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Intent</title>
-    <url>/2019/07/16/Intent/</url>
-    <content><![CDATA[<p>Intent</p>
-<a id="more"></a>
-
-<p>intent分为显示Intent和隐式Intent</p>
-<p>1、显示Intent</p>
-<pre><code>直接Intent i= new Intent(Context,acitvity.class)</code></pre><p>2、隐式Intent</p>
-<pre><code>&lt;activity android:name=&quot;&quot;&gt;
-    &lt;intent-filter&gt;
-        &lt;category android:name=&quot;android.itent.category.DEFAULT&quot;/&gt;
-        &lt;action android:name=&quot;自定义字符串&quot;/&gt;
-    &lt;/intent-filter&gt;
-&lt;/activity&gt;</code></pre><p>使用Intent时直接new Intent(“配置的自定义字符串”)<br>    可以直接启动其他应用中的Activity</p>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C++数据类型</title>
-    <url>/2019/10/09/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <url>/blog/2019/10/09/C-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
     <content><![CDATA[<h3 id="C-数据类型"><a href="#C-数据类型" class="headerlink" title="C++ 数据类型"></a>C++ 数据类型</h3><a id="more"></a>
 
 
@@ -100,8 +80,47 @@
       </tags>
   </entry>
   <entry>
+    <title>Intent</title>
+    <url>/blog/2019/07/16/Intent/</url>
+    <content><![CDATA[<p>Intent</p>
+<a id="more"></a>
+
+<p>intent分为显示Intent和隐式Intent</p>
+<p>1、显示Intent</p>
+<pre><code>直接Intent i= new Intent(Context,acitvity.class)</code></pre><p>2、隐式Intent</p>
+<pre><code>&lt;activity android:name=&quot;&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;category android:name=&quot;android.itent.category.DEFAULT&quot;/&gt;
+        &lt;action android:name=&quot;自定义字符串&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;</code></pre><p>使用Intent时直接new Intent(“配置的自定义字符串”)<br>    可以直接启动其他应用中的Activity</p>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>android启动页</title>
+    <url>/blog/2019/07/31/android%E5%90%AF%E5%8A%A8%E9%A1%B5/</url>
+    <content><![CDATA[<h1 id="android启动页"><a href="#android启动页" class="headerlink" title="android启动页"></a>android启动页</h1><a id="more"></a>
+
+<p>我们常用的Android启动页共有四种解决方案：</p>
+<pre><code>1、属性动画ObjectAnimator实现
+2、补间动画实现
+3、定时器Timer
+4、Handler+Thread----AsybTask</code></pre><h1 id="MVP架构设计与实现"><a href="#MVP架构设计与实现" class="headerlink" title="MVP架构设计与实现"></a><center>MVP架构设计与实现</center></h1><pre><code>1、什么是MVP？
+    MVP是一种项目架构设计模式
+    其实MVP本质就是将View和Model完全隔离出来，通过Presenter统一调度管理
+    M是Model，就是数据
+    V是UI界面（Activity、Fragment、视图）
+    P是Persenter，是调度者</code></pre><h2 id="mvp和mvc的区别"><a href="#mvp和mvc的区别" class="headerlink" title="mvp和mvc的区别"></a>mvp和mvc的区别</h2><pre><code>mvp就是mvc的改造版</code></pre>]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>activity四种启动模式</title>
-    <url>/2019/07/31/activity%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
+    <url>/blog/2019/07/31/activity%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p>activity四种启动模式</p>
 <a id="more"></a>
 
@@ -122,145 +141,8 @@ Fragment和Activity时多对多的关系</code></pre>]]></content>
       </tags>
   </entry>
   <entry>
-    <title>asyncTask多线程学习</title>
-    <url>/2019/07/15/asyncTask%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="asyncTask多线程学习"><a href="#asyncTask多线程学习" class="headerlink" title="asyncTask多线程学习"></a>asyncTask多线程学习</h1><a id="more"></a>
-
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><pre><code>·一个Android已封装的好的轻量级异步类
-·属于抽象类，即使用时需实现子类
-
-public abstract class AsyncTask&lt;Params, Progress, Result&gt; { 
- ... 
- }</code></pre><hr>
-<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>1、 实现多线程<br><br>2、异步通信、消息传递，实现龚总线程与主线程（UI线程）之间的通信<br>即：将工作线程的执行结果传递给主线程，从而在主线程中执行相关的UI操作<br>从而保证线程安全</p>
-<hr>
-<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>·方便实现异步通信<br>不需要使用“任务线程（如继承Thread类）+Handler”的复杂组合<br><br>·节省资源<br><br>采用线程池的缓存线程+复用线程，避免了频繁创建与销毁线程多带来的系统资源的开销</p>
-<hr>
-<h1 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h1><p>AsyncTask类属于抽象类，即使用时需要实现子类</p>
-<pre><code>public abstract class AsyncTask&lt;Params,Progress,Result&gt;{
-...
-}
-//类中参数为3中泛型类型
-//整体作用：控制AsyncTash子类执行线程任务时各个阶段的返回类型
-//具体说明
-/*
-Params：开始异步任务执行时传入的参数类型，对应excute（）中传递的参数
-Progress：异步任务执行过程中，返回下载进入值的类型
-Result：异步任务执行完成后，返回的结果类型，与doInBackground()的返回值保持一致
-
-注：
-    使用时并不是所有类型都被使用
-    若无被使用，可用java.lang.Void类型代替
-    若有不同业务，需额外再一个AsyncTask的子类
-*/</code></pre><hr>
-<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><p>AsyncTask的使用步骤有3个：</p>
-<p>1、创建 AsyncTask 子类 &amp; 根据需求实现核心方法</p>
-<p>2、创建 AsyncTask子类的实例对象（即 任务实例）</p>
-<p>3、手动调用execute(（）从而执行异步线程任务</p>
-<pre><code>/**
-  * 步骤1：创建AsyncTask子类
-  * 注： 
-  *   a. 继承AsyncTask类
-  *   b. 为3个泛型参数指定类型；若不使用，可用java.lang.Void类型代替
-  *   c. 根据需求，在AsyncTask子类内实现核心方法
-  */
-
-  private class MyTask extends AsyncTask&lt;Params, Progress, Result&gt; {
-
-    ....
-
-  // 方法1：onPreExecute（）
-  // 作用：执行 线程任务前的操作
-  // 注：根据需求复写
-  @Override
-  protected void onPreExecute() {
-       ...
-    }
-
-  // 方法2：doInBackground（）
-  // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
-  // 注：必须复写，从而自定义线程任务
-  @Override
-  protected String doInBackground(String... params) {
-
-        ...// 自定义的线程任务
-
-        // 可调用publishProgress（）显示进度, 之后将执行onProgressUpdate（）
-         publishProgress(count);
-
-     }
-
-  // 方法3：onProgressUpdate（）
-  // 作用：在主线程 显示线程任务执行的进度
-  // 注：根据需求复写
-  @Override
-  protected void onProgressUpdate(Integer... progresses) {
-        ...
-
-    }
-
-  // 方法4：onPostExecute（）
-  // 作用：接收线程任务执行结果、将执行结果显示到UI组件
-  // 注：必须复写，从而自定义UI操作
-  @Override
-  protected void onPostExecute(String result) {
-
-     ...// UI操作
-
-    }
-
-  // 方法5：onCancelled()
-  // 作用：将异步任务设置为：取消状态
-  @Override
-    protected void onCancelled() {
-    ...
-    }
-  }
-
-/**
-  * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
-  * 注：AsyncTask子类的实例必须在UI线程中创建
-  */
-  MyTask mTask = new MyTask();
-
-/**
-  * 步骤3：手动调用execute(Params... params) 从而执行异步线程任务
-  * 注：
-  *    a. 必须在UI线程中调用
-  *    b. 同一个AsyncTask实例对象只能执行1次，若执行第2次将会抛出异常
-  *    c. 执行任务中，系统会自动调用AsyncTask的一系列方法：onPreExecute() 、doInBackground()、onProgressUpdate() 、onPostExecute() 
-  *    d. 不能手动调用上述方法
-  */
-  mTask.execute()；</code></pre><h1 id="关于-生命周期"><a href="#关于-生命周期" class="headerlink" title="关于 生命周期"></a>关于 生命周期</h1><p>结论<br>AsyncTask不与任何组件绑定生命周期<br>使用建议<br>在Activity 或 Fragment中使用 AsyncTask时，最好在Activity 或 Fragment的onDestory（）调用 cancel(boolean)；</p>
-<h2 id="关于-内存泄漏"><a href="#关于-内存泄漏" class="headerlink" title="关于 内存泄漏"></a>关于 内存泄漏</h2><p>结论<br><br>若AsyncTask被声明为Activity的非静态内部类，当Activity需销毁时，会因AsyncTask保留对Activity的引用 而导致Activity无法被回收，最终引起内存泄露<br><br>使用建议<br><br>AsyncTask应被声明为Activity的静态内部类</p>
-<h2 id="线程任务执行结果-丢失"><a href="#线程任务执行结果-丢失" class="headerlink" title="线程任务执行结果 丢失"></a>线程任务执行结果 丢失</h2><p><br>结论<br>当Activity重新创建时（屏幕旋转 / Activity被意外销毁时后恢复），之前运行的AsyncTask（非静态的内部类）持有的之前Activity引用已无效，故复写的onPostExecute()将不生效，即无法更新UI操作<br><br>使用建议<br><br>在Activity恢复时的对应方法 重启 任务线程</p>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>android启动页</title>
-    <url>/2019/07/31/android%E5%90%AF%E5%8A%A8%E9%A1%B5/</url>
-    <content><![CDATA[<h1 id="android启动页"><a href="#android启动页" class="headerlink" title="android启动页"></a>android启动页</h1><a id="more"></a>
-
-<p>我们常用的Android启动页共有四种解决方案：</p>
-<pre><code>1、属性动画ObjectAnimator实现
-2、补间动画实现
-3、定时器Timer
-4、Handler+Thread----AsybTask</code></pre><h1 id="MVP架构设计与实现"><a href="#MVP架构设计与实现" class="headerlink" title="MVP架构设计与实现"></a><center>MVP架构设计与实现</center></h1><pre><code>1、什么是MVP？
-    MVP是一种项目架构设计模式
-    其实MVP本质就是将View和Model完全隔离出来，通过Presenter统一调度管理
-    M是Model，就是数据
-    V是UI界面（Activity、Fragment、视图）
-    P是Persenter，是调度者</code></pre><h2 id="mvp和mvc的区别"><a href="#mvp和mvc的区别" class="headerlink" title="mvp和mvc的区别"></a>mvp和mvc的区别</h2><pre><code>mvp就是mvc的改造版</code></pre>]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android通知栏操作</title>
-    <url>/2019/07/13/android%E9%80%9A%E7%9F%A5%E6%A0%8F/</url>
+    <url>/blog/2019/07/13/android%E9%80%9A%E7%9F%A5%E6%A0%8F/</url>
     <content><![CDATA[<h2 id="Android通知提示"><a href="#Android通知提示" class="headerlink" title="Android通知提示"></a>Android通知提示</h2><a id="more"></a>
 
 <pre><code>    之前项目一直使用极光推送，极光推送自带通知提示，由于项目需求，
@@ -420,8 +302,126 @@ private void sendNotification
       </tags>
   </entry>
   <entry>
+    <title>asyncTask多线程学习</title>
+    <url>/blog/2019/07/15/asyncTask%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="asyncTask多线程学习"><a href="#asyncTask多线程学习" class="headerlink" title="asyncTask多线程学习"></a>asyncTask多线程学习</h1><a id="more"></a>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><pre><code>·一个Android已封装的好的轻量级异步类
+·属于抽象类，即使用时需实现子类
+
+public abstract class AsyncTask&lt;Params, Progress, Result&gt; { 
+ ... 
+ }</code></pre><hr>
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>1、 实现多线程<br><br>2、异步通信、消息传递，实现龚总线程与主线程（UI线程）之间的通信<br>即：将工作线程的执行结果传递给主线程，从而在主线程中执行相关的UI操作<br>从而保证线程安全</p>
+<hr>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>·方便实现异步通信<br>不需要使用“任务线程（如继承Thread类）+Handler”的复杂组合<br><br>·节省资源<br><br>采用线程池的缓存线程+复用线程，避免了频繁创建与销毁线程多带来的系统资源的开销</p>
+<hr>
+<h1 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h1><p>AsyncTask类属于抽象类，即使用时需要实现子类</p>
+<pre><code>public abstract class AsyncTask&lt;Params,Progress,Result&gt;{
+...
+}
+//类中参数为3中泛型类型
+//整体作用：控制AsyncTash子类执行线程任务时各个阶段的返回类型
+//具体说明
+/*
+Params：开始异步任务执行时传入的参数类型，对应excute（）中传递的参数
+Progress：异步任务执行过程中，返回下载进入值的类型
+Result：异步任务执行完成后，返回的结果类型，与doInBackground()的返回值保持一致
+
+注：
+    使用时并不是所有类型都被使用
+    若无被使用，可用java.lang.Void类型代替
+    若有不同业务，需额外再一个AsyncTask的子类
+*/</code></pre><hr>
+<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><p>AsyncTask的使用步骤有3个：</p>
+<p>1、创建 AsyncTask 子类 &amp; 根据需求实现核心方法</p>
+<p>2、创建 AsyncTask子类的实例对象（即 任务实例）</p>
+<p>3、手动调用execute(（）从而执行异步线程任务</p>
+<pre><code>/**
+  * 步骤1：创建AsyncTask子类
+  * 注： 
+  *   a. 继承AsyncTask类
+  *   b. 为3个泛型参数指定类型；若不使用，可用java.lang.Void类型代替
+  *   c. 根据需求，在AsyncTask子类内实现核心方法
+  */
+
+  private class MyTask extends AsyncTask&lt;Params, Progress, Result&gt; {
+
+    ....
+
+  // 方法1：onPreExecute（）
+  // 作用：执行 线程任务前的操作
+  // 注：根据需求复写
+  @Override
+  protected void onPreExecute() {
+       ...
+    }
+
+  // 方法2：doInBackground（）
+  // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
+  // 注：必须复写，从而自定义线程任务
+  @Override
+  protected String doInBackground(String... params) {
+
+        ...// 自定义的线程任务
+
+        // 可调用publishProgress（）显示进度, 之后将执行onProgressUpdate（）
+         publishProgress(count);
+
+     }
+
+  // 方法3：onProgressUpdate（）
+  // 作用：在主线程 显示线程任务执行的进度
+  // 注：根据需求复写
+  @Override
+  protected void onProgressUpdate(Integer... progresses) {
+        ...
+
+    }
+
+  // 方法4：onPostExecute（）
+  // 作用：接收线程任务执行结果、将执行结果显示到UI组件
+  // 注：必须复写，从而自定义UI操作
+  @Override
+  protected void onPostExecute(String result) {
+
+     ...// UI操作
+
+    }
+
+  // 方法5：onCancelled()
+  // 作用：将异步任务设置为：取消状态
+  @Override
+    protected void onCancelled() {
+    ...
+    }
+  }
+
+/**
+  * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
+  * 注：AsyncTask子类的实例必须在UI线程中创建
+  */
+  MyTask mTask = new MyTask();
+
+/**
+  * 步骤3：手动调用execute(Params... params) 从而执行异步线程任务
+  * 注：
+  *    a. 必须在UI线程中调用
+  *    b. 同一个AsyncTask实例对象只能执行1次，若执行第2次将会抛出异常
+  *    c. 执行任务中，系统会自动调用AsyncTask的一系列方法：onPreExecute() 、doInBackground()、onProgressUpdate() 、onPostExecute() 
+  *    d. 不能手动调用上述方法
+  */
+  mTask.execute()；</code></pre><h1 id="关于-生命周期"><a href="#关于-生命周期" class="headerlink" title="关于 生命周期"></a>关于 生命周期</h1><p>结论<br>AsyncTask不与任何组件绑定生命周期<br>使用建议<br>在Activity 或 Fragment中使用 AsyncTask时，最好在Activity 或 Fragment的onDestory（）调用 cancel(boolean)；</p>
+<h2 id="关于-内存泄漏"><a href="#关于-内存泄漏" class="headerlink" title="关于 内存泄漏"></a>关于 内存泄漏</h2><p>结论<br><br>若AsyncTask被声明为Activity的非静态内部类，当Activity需销毁时，会因AsyncTask保留对Activity的引用 而导致Activity无法被回收，最终引起内存泄露<br><br>使用建议<br><br>AsyncTask应被声明为Activity的静态内部类</p>
+<h2 id="线程任务执行结果-丢失"><a href="#线程任务执行结果-丢失" class="headerlink" title="线程任务执行结果 丢失"></a>线程任务执行结果 丢失</h2><p><br>结论<br>当Activity重新创建时（屏幕旋转 / Activity被意外销毁时后恢复），之前运行的AsyncTask（非静态的内部类）持有的之前Activity引用已无效，故复写的onPostExecute()将不生效，即无法更新UI操作<br><br>使用建议<br><br>在Activity恢复时的对应方法 重启 任务线程</p>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
-    <url>/2020/04/06/hello-world/</url>
+    <url>/blog/2020/04/06/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <a id="more"></a>
 
@@ -440,8 +440,32 @@ private void sendNotification
 ]]></content>
   </entry>
   <entry>
+    <title>postgresql_01</title>
+    <url>/blog/2019/08/31/postgresql-01/</url>
+    <content><![CDATA[<p>postgresql</p>
+<a id="more"></a>
+
+<h2 id="什么是PostgreSQL？"><a href="#什么是PostgreSQL？" class="headerlink" title="什么是PostgreSQL？"></a>什么是PostgreSQL？</h2><p>PostgreSQL是一个功能强大的开源对象数据库管理系统（ORDBMS）。用于安全的存储数据，支持最佳做法，并允许在处理请求时检索它们。</p>
+<p>PostgreSQL（也称为Post-gress-Q-L）由PostgreSQL全球开发集团（全球志愿者团队）开发。</p>
+<h2 id="PostgreSQL的特点"><a href="#PostgreSQL的特点" class="headerlink" title="PostgreSQL的特点"></a>PostgreSQL的特点</h2><ul>
+<li>postgresql可在所有主要操作系统上运行</li>
+<li>postgresql支持文本，图像、声音和视频，并包括用于C/C++，java、Perl、Python、Ruby、Tcl和开放数据链接（ODBC）的编程接口</li>
+<li>postgresql支持sql的许多功能，例如复杂sql查询，sql选择、外键、触发器、视图、事务、多进程并发控制、流式复制、热备</li>
+<li>在PostgreSQL中，表可以设置从 父表 继承其特征</li>
+<li>可以安装多个扩展以向postgreSQL添加附加功能</li>
+</ul>
+<h2 id="postgreSQL命令语法"><a href="#postgreSQL命令语法" class="headerlink" title="postgreSQL命令语法"></a>postgreSQL命令语法</h2><p>查看PostgreSQL所有语句的语法：</p>
+<ul>
+<li>安装</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>通过包名判断Android应用是否在后台运行</title>
-    <url>/2019/07/04/hexo%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
+    <url>/blog/2019/07/04/hexo%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<h2 id="Android中判断应用是否在后台运行"><a href="#Android中判断应用是否在后台运行" class="headerlink" title="Android中判断应用是否在后台运行"></a><center>Android中判断应用是否在后台运行<center></center></center></h2><a id="more"></a>
 
 <p>判断一个app是否在后台运行的，我是采用两个方法判断，当其中一个方法为true时，就代表程序正在后台运行中。</p>
@@ -510,32 +534,8 @@ public static boolean isAlive(String  paclageName, Context context){
       </tags>
   </entry>
   <entry>
-    <title>postgresql_01</title>
-    <url>/2019/08/31/postgresql-01/</url>
-    <content><![CDATA[<p>postgresql</p>
-<a id="more"></a>
-
-<h2 id="什么是PostgreSQL？"><a href="#什么是PostgreSQL？" class="headerlink" title="什么是PostgreSQL？"></a>什么是PostgreSQL？</h2><p>PostgreSQL是一个功能强大的开源对象数据库管理系统（ORDBMS）。用于安全的存储数据，支持最佳做法，并允许在处理请求时检索它们。</p>
-<p>PostgreSQL（也称为Post-gress-Q-L）由PostgreSQL全球开发集团（全球志愿者团队）开发。</p>
-<h2 id="PostgreSQL的特点"><a href="#PostgreSQL的特点" class="headerlink" title="PostgreSQL的特点"></a>PostgreSQL的特点</h2><ul>
-<li>postgresql可在所有主要操作系统上运行</li>
-<li>postgresql支持文本，图像、声音和视频，并包括用于C/C++，java、Perl、Python、Ruby、Tcl和开放数据链接（ODBC）的编程接口</li>
-<li>postgresql支持sql的许多功能，例如复杂sql查询，sql选择、外键、触发器、视图、事务、多进程并发控制、流式复制、热备</li>
-<li>在PostgreSQL中，表可以设置从 父表 继承其特征</li>
-<li>可以安装多个扩展以向postgreSQL添加附加功能</li>
-</ul>
-<h2 id="postgreSQL命令语法"><a href="#postgreSQL命令语法" class="headerlink" title="postgreSQL命令语法"></a>postgreSQL命令语法</h2><p>查看PostgreSQL所有语句的语法：</p>
-<ul>
-<li>安装</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rabbitMQ</title>
-    <url>/2019/07/16/rabbitMQ/</url>
+    <url>/blog/2019/07/16/rabbitMQ/</url>
     <content><![CDATA[<p>rabbitMQ</p>
 <a id="more"></a>
 
@@ -558,7 +558,7 @@ public static boolean isAlive(String  paclageName, Context context){
   </entry>
   <entry>
     <title>springboot注解</title>
-    <url>/2019/10/03/springboot%E6%B3%A8%E8%A7%A3/</url>
+    <url>/blog/2019/10/03/springboot%E6%B3%A8%E8%A7%A3/</url>
     <content><![CDATA[<h1 id="spring-boot-注解"><a href="#spring-boot-注解" class="headerlink" title="spring boot 注解"></a>spring boot 注解</h1><a id="more"></a>
 
 <p>@Configuration：告诉Spring这是一个配置类</p>
@@ -631,7 +631,7 @@ FilterType.ASSIGNABLE_TYPE: 按照给定的类型进行过滤（@Filter(type=Fil
   </entry>
   <entry>
     <title>代码整洁之道</title>
-    <url>/2019/09/01/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E7%9F%A5%E9%81%93-01/</url>
+    <url>/blog/2019/09/01/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E7%9F%A5%E9%81%93-01/</url>
     <content><![CDATA[<p>代码整洁之道</p>
 <a id="more"></a>
 
@@ -643,24 +643,8 @@ FilterType.ASSIGNABLE_TYPE: 按照给定的类型进行过滤（@Filter(type=Fil
       </tags>
   </entry>
   <entry>
-    <title>装饰者模式</title>
-    <url>/2019/08/17/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p>装饰者模式</p>
-<a id="more"></a>
-
-<p>装饰者模式定义：<br></p>
-<blockquote>
-<p>动态的给一个对象添加一些额外的职责</p>
-</blockquote>
-<p>装饰者模式的优点：</p>
-<blockquote>
-<p>把类中的装饰功能从类中搬移去除，这样可以简化原有的类</p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>动态代理</title>
-    <url>/2019/10/04/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <url>/blog/2019/10/04/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
     <content><![CDATA[<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><a id="more"></a>
 
 <h2 id="1-什么是代理"><a href="#1-什么是代理" class="headerlink" title="1 什么是代理"></a>1 什么是代理</h2><blockquote>
@@ -817,5 +801,21 @@ public class InvocationHandlerImpl implements InvocationHandler {
       <tags>
         <tag>java</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>装饰者模式</title>
+    <url>/blog/2019/08/17/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>装饰者模式</p>
+<a id="more"></a>
+
+<p>装饰者模式定义：<br></p>
+<blockquote>
+<p>动态的给一个对象添加一些额外的职责</p>
+</blockquote>
+<p>装饰者模式的优点：</p>
+<blockquote>
+<p>把类中的装饰功能从类中搬移去除，这样可以简化原有的类</p>
+</blockquote>
+]]></content>
   </entry>
 </search>
