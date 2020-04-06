@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Adapter</title>
-    <url>/blog/2019/07/17/Adapter/</url>
-    <content><![CDATA[<p>Adapter</p>
+    <title>Hello World</title>
+    <url>/blog/2020/04/06/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <a id="more"></a>
 
-<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><pre><code>android中的UI控件都是跟Adapter（适配器）打交道的，
-了解并学会使用这个Adapter很重要Adapter是用来帮助填充数据的中间桥梁，简单点说就是：将各种数据以合适的形式显示到view上提供给用户看</code></pre><p><img src="https://i.imgur.com/YZ4jfBP.png" alt></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
   </entry>
   <entry>
     <title>C++数据类型</title>
@@ -80,21 +87,309 @@
       </tags>
   </entry>
   <entry>
-    <title>Intent</title>
-    <url>/blog/2019/07/16/Intent/</url>
-    <content><![CDATA[<p>Intent</p>
+    <title>动态代理</title>
+    <url>/blog/2019/10/04/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
+    <content><![CDATA[<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><a id="more"></a>
+
+<h2 id="1-什么是代理"><a href="#1-什么是代理" class="headerlink" title="1 什么是代理"></a>1 什么是代理</h2><blockquote>
+<p>通过代理控制对象的访问,可以详细访问某个对象的方法，在这个方法调用处理，或调用后处理。既(AOP微实现)  ,AOP核心技术面向切面编程</p>
+</blockquote>
+<h2 id="2-代理应用场景"><a href="#2-代理应用场景" class="headerlink" title="2 代理应用场景"></a>2 代理应用场景</h2><blockquote>
+<p>SpringAOP、事物原理、日志打印、权限控制、远程调用、安全代理 可以隐蔽真实角色</p>
+</blockquote>
+<h2 id="3-代理的分类"><a href="#3-代理的分类" class="headerlink" title="3 代理的分类"></a>3 代理的分类</h2><blockquote>
+<p>静态代理(静态定义代理类)</p>
+</blockquote>
+<blockquote>
+<p>动态代理(动态生成代理类)</p>
+</blockquote>
+<blockquote>
+<p>Jdk自带动态代理</p>
+</blockquote>
+<blockquote>
+<p>Cglib 、javaassist（字节码操作库）</p>
+</blockquote>
+<h3 id="3-1-什么是静态代理"><a href="#3-1-什么是静态代理" class="headerlink" title="3.1 什么是静态代理"></a>3.1 什么是静态代理</h3><blockquote>
+<p>由程序员创建或工具生成代理类的源码，再编译代理类。所谓静态也就是在程序运行前就已经存在代理类的字节码文件，代理类和委托类的关系在运行前就确定了</p>
+</blockquote>
+<pre><code>public interface IUserDao {
+    void save();
+}
+public class UserDao implements IUserDao {
+    public void save() {
+        System.out.println(&quot;已经保存数据...&quot;);
+    }
+}
+代理类
+public class UserDaoProxy implements IUserDao {
+    private IUserDao target;
+
+    public UserDaoProxy(IUserDao iuserDao) {
+        this.target = iuserDao;
+    }
+
+    public void save() {
+        System.out.println(&quot;开启事物...&quot;);
+        target.save();
+        System.out.println(&quot;关闭事物...&quot;);
+    }
+
+}</code></pre><h3 id="3-2-什么是动态代理"><a href="#3-2-什么是动态代理" class="headerlink" title="3.2 什么是动态代理"></a>3.2 什么是动态代理</h3><blockquote>
+<p>1.代理对象,不需要实现接口;</p>
+</blockquote>
+<blockquote>
+<p>2.代理对象的生成,是利用JDK的API,动态的在内存中构建代理对象(需要我们指定创建代理对象/目标对象实现的接口的类型)</p>
+</blockquote>
+<blockquote>
+<p>3.动态代理也叫做:JDK代理,接口代理</p>
+</blockquote>
+<h4 id="3-2-1-JDK动态代理"><a href="#3-2-1-JDK动态代理" class="headerlink" title="3.2.1 JDK动态代理"></a>3.2.1 JDK动态代理</h4><blockquote>
+<p>1) 原理：是根据类加载器和接口创建代理类（此代理类是接口的实现类，所以必须使用接口 面向接口生成代理，位于java.lang.reflect包下）</p>
+</blockquote>
+<blockquote>
+<p>2)实现方式： </p>
+</blockquote>
+<blockquote>
+<ol>
+<li>通过实现InvocationHandler接口创建自己的调用处理器 IvocationHandler handler = new InvocationHandlerImpl(…); </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>通过为Proxy类指定ClassLoader对象和一组interface创建动态代理类Class clazz = Proxy.getProxyClass(classLoader,new Class[]{…}); </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="3">
+<li>通过反射机制获取动态代理类的构造函数，其参数类型是调用处理器接口类型Constructor constructor = clazz.getConstructor(new Class[]{InvocationHandler.class}); </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="4">
+<li>通过构造函数创建代理类实例，此时需将调用处理器对象作为参数被传入Interface Proxy = (Interface)constructor.newInstance(new Object[] (handler))</li>
+</ol>
+</blockquote>
+<p><font style="color:red"> 缺点：jdk动态代理，必须是面向接口，目标业务类必须实现接口 </font></p>
+<pre><code>// 每次生成动态代理类对象时,实现了InvocationHandler接口的调用处理器对象 
+public class InvocationHandlerImpl implements InvocationHandler {
+    private Object target;// 这其实业务实现类对象，用来调用具体的业务方法
+    // 通过构造函数传入目标对象
+    public InvocationHandlerImpl(Object target) {
+        this.target = target;
+    }
+
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        Object result = null;
+        System.out.println(&quot;调用开始处理&quot;);
+        result = method.invoke(target, args);
+        System.out.println(&quot;调用结束处理&quot;);
+        return result;
+    }
+
+    public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException,
+            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+        // 被代理对象
+        IUserDao userDao = new UserDao();
+        InvocationHandlerImpl invocationHandlerImpl = new InvocationHandlerImpl(userDao);
+        ClassLoader loader = userDao.getClass().getClassLoader();
+        Class&lt;?&gt;[] interfaces = userDao.getClass().getInterfaces();
+        // 主要装载器、一组接口及调用处理动态代理实例
+        IUserDao newProxyInstance = (IUserDao) Proxy.newProxyInstance(loader, interfaces, invocationHandlerImpl);
+        newProxyInstance.save();
+    }
+
+}</code></pre><h3 id="3-3-CGLIB动态代理"><a href="#3-3-CGLIB动态代理" class="headerlink" title="3.3 CGLIB动态代理"></a>3.3 CGLIB动态代理</h3><blockquote>
+<p>原理：利用asm开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理</p>
+</blockquote>
+<h4 id="3-3-1-什么是CGLIB动态代理"><a href="#3-3-1-什么是CGLIB动态代理" class="headerlink" title="3.3.1 什么是CGLIB动态代理"></a>3.3.1 什么是CGLIB动态代理</h4><blockquote>
+<p>使用cglib实现动态代理，并不要求委托必须实现接口，底层采用asm字节码生成框架生成代理类的字节码</p>
+</blockquote>
+<pre><code>public class CglibProxy implements MethodInterceptor {
+    private Object targetObject;
+    // 这里的目标类型为Object，则可以接受任意一种参数作为被代理类，实现了动态代理
+    public Object getInstance(Object target) {
+        // 设置需要创建子类的类
+        this.targetObject = target;
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(target.getClass());
+        enhancer.setCallback(this);
+        return enhancer.create();
+    }
+
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+        System.out.println(&quot;开启事物&quot;);
+        Object result = proxy.invoke(targetObject, args);
+        System.out.println(&quot;关闭事物&quot;);
+        // 返回代理对象
+        return result;
+    }
+    public static void main(String[] args) {
+        CglibProxy cglibProxy = new CglibProxy();
+        UserDao userDao = (UserDao) cglibProxy.getInstance(new UserDao());
+        userDao.save();
+    }
+}</code></pre><h3 id="3-4-CGLIB-动态代理与-JDK-动态代理的区别"><a href="#3-4-CGLIB-动态代理与-JDK-动态代理的区别" class="headerlink" title="3.4 CGLIB 动态代理与 JDK 动态代理的区别"></a>3.4 CGLIB 动态代理与 JDK 动态代理的区别</h3><blockquote>
+<p>JDK动态代理是<font style="color:red">利用发射机制生成一个实现代理接口的匿名类</font>,在调用具体方法前调用InvookeHandler来处理</p>
+<p>JDK动态代理只能对实现了接口的类生成代理，而不能针对类</p>
+</blockquote>
+<blockquote>
+<p>而CGLIB动态代理是<font style="color:red">利用asm开源包</font>,对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。</p>
+<p>CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法。因为是继承，所以该类或方法最好不要声明成final，final可以组织继承和多态</p>
+</blockquote>
+<h3 id="3-5-spring-中如何使用"><a href="#3-5-spring-中如何使用" class="headerlink" title="3.5 spring 中如何使用"></a>3.5 spring 中如何使用</h3><blockquote>
+<p>1、如果目标对象实现了接口，默认情况下会采用JDK动态代理实现AOP;</p>
+<p>2、如果目标对象实现了接口，可以强制使用CGLIB实现AOP</p>
+<p>3、如果目标对象没有实现了接口，必须采用CGLIB库，spring会自动在JDK和CGLIB之间转换 </p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>springboot注解</title>
+    <url>/blog/2019/10/03/springboot%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<h1 id="spring-boot-注解"><a href="#spring-boot-注解" class="headerlink" title="spring boot 注解"></a>spring boot 注解</h1><a id="more"></a>
+
+<p>@Configuration：告诉Spring这是一个配置类</p>
+<p>@Bean : 给容器注册一个Bean；类型为返回值的类型，id默认是用方法名作为id</p>
+<p>@ComponentScan(value=””)：包扫描</p>
+<pre><code>1、 value：指定需要扫描的包
+2、 excludeFilters = Filter[]：指定扫描的时候排除的规则
+    例如：
+        excludeFilters = {
+        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
+
+        //如果需要过滤多个条件
+        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class}) //排除controller注解的类    
+    }
+3、 includeFilters = Filter[]：指定扫描的时候只需要包含的哪些组件
+    例如：
+    includeFilters = {
+        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
+
+        //如果需要过滤多个条件
+        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class},useDefaultFilters = false) //排除controller注解的类    
+    }</code></pre><p>@Filter：过滤规则</p>
+<pre><code>FilterType.ANNONTATION：按照注释进行过滤
+FilterType.ASSIGNABLE_TYPE: 按照给定的类型进行过滤（@Filter(type=FilterType.ASSIGNABLE_TYPE,classes={xxxService.class}）</code></pre><p>@ComponentScans(value = {})：指定多个componentScan规则</p>
+<p>@Scope：设置组件的作用域（springboot 默认bean对象为单例）</p>
+<h2 id="自定义TypeFilter指定过滤规则-FilterType-CUSTOM"><a href="#自定义TypeFilter指定过滤规则-FilterType-CUSTOM" class="headerlink" title="自定义TypeFilter指定过滤规则 FilterType.CUSTOM"></a>自定义TypeFilter指定过滤规则 FilterType.CUSTOM</h2><pre><code>public class MyTypeFilter implements TypeFilter{
+
+    /**
+        metadataReader: 读取到当前正在扫描的类的信息
+        metadataReaderFactory: 可以获取到其他任何类信息的
+    */
+    @Override
+    public boolean match(MetadataReader metadataReader,
+    MetadataReaderFactory metadataReaderFactory) throw IOException {
+
+        //获取当前类的注解的信息
+        AnnotationMetadata = annotionMetadata = metadataReader.getAnnotationMetadata();
+
+        //获取当前正在扫描的类的信息
+        ClassMetadata classMetadata = metadataReader.getClassMetadata();
+
+        //获取当前类的资源(类的路径)
+        Resource resource = metadataReader.getResource();
+
+        //    进行自定义判断
+
+        return false;//false 表示不匹配
+    }
+}</code></pre><h3 id="Java配置"><a href="#Java配置" class="headerlink" title="Java配置"></a>Java配置</h3><blockquote>
+<p>Java配置是通过 @Configuration 和 @Bean 来实现的。</p>
+</blockquote>
+<ul>
+<li>@Configuration 声明当前类是一个配置累，相当于一个Spring配置的xml文件。</li>
+<li>@Bean 注解再方法上，声明当前方法的返回值为一个Bean对象</li>
+</ul>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><blockquote>
+<p>AOP：面向切面编程，相对于OOP面向对象编程</p>
+<p>Spring 的 AOP 的存在目的就是为了解耦，AOP 可以让一组类共享相同的行为，再 OOP 中只能通过继承类和实现接口，来使代码耦合度增强，且类继承只能为单继承，阻碍更多行为添加到一组类上，AOP 弥补了 OOP 的不足。</p>
+<p>Spring 支持 AspectJ 的注解式切面编程：</p>
+</blockquote>
+<ol>
+<li>使用 @AspectJ 声明一个切面</li>
+<li>使用 @After、@Before、@Around 定义建言（advice），可直接将拦截规则（切点）作为参数。 </li>
+<li>其中@After、@Before、@Around 参数的拦截规则为切点（PointCut），为了使切点复用，，可使用@PointCut 专门定义拦截规则，然后再@After、@Before、@Around 的参数中调用。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>spring boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码整洁之道</title>
+    <url>/blog/2019/09/01/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E7%9F%A5%E9%81%93-01/</url>
+    <content><![CDATA[<p>代码整洁之道</p>
 <a id="more"></a>
 
-<p>intent分为显示Intent和隐式Intent</p>
-<p>1、显示Intent</p>
-<pre><code>直接Intent i= new Intent(Context,acitvity.class)</code></pre><p>2、隐式Intent</p>
-<pre><code>&lt;activity android:name=&quot;&quot;&gt;
-    &lt;intent-filter&gt;
-        &lt;category android:name=&quot;android.itent.category.DEFAULT&quot;/&gt;
-        &lt;action android:name=&quot;自定义字符串&quot;/&gt;
-    &lt;/intent-filter&gt;
-&lt;/activity&gt;</code></pre><p>使用Intent时直接new Intent(“配置的自定义字符串”)<br>    可以直接启动其他应用中的Activity</p>
+<h2 id="有意义的命名"><a href="#有意义的命名" class="headerlink" title="有意义的命名"></a>有意义的命名</h2><p>不管变量还是方法名，尽可能使用完整的英文单词，而不是使用简写或者某个字母代替。</p>
+<h2 id="避免误导"><a href="#避免误导" class="headerlink" title="避免误导"></a>避免误导</h2><p>例如：accountList 来指称一组账户，除非它真的是list类型，</p>
 ]]></content>
+      <tags>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>postgresql_01</title>
+    <url>/blog/2019/08/31/postgresql-01/</url>
+    <content><![CDATA[<p>postgresql</p>
+<a id="more"></a>
+
+<h2 id="什么是PostgreSQL？"><a href="#什么是PostgreSQL？" class="headerlink" title="什么是PostgreSQL？"></a>什么是PostgreSQL？</h2><p>PostgreSQL是一个功能强大的开源对象数据库管理系统（ORDBMS）。用于安全的存储数据，支持最佳做法，并允许在处理请求时检索它们。</p>
+<p>PostgreSQL（也称为Post-gress-Q-L）由PostgreSQL全球开发集团（全球志愿者团队）开发。</p>
+<h2 id="PostgreSQL的特点"><a href="#PostgreSQL的特点" class="headerlink" title="PostgreSQL的特点"></a>PostgreSQL的特点</h2><ul>
+<li>postgresql可在所有主要操作系统上运行</li>
+<li>postgresql支持文本，图像、声音和视频，并包括用于C/C++，java、Perl、Python、Ruby、Tcl和开放数据链接（ODBC）的编程接口</li>
+<li>postgresql支持sql的许多功能，例如复杂sql查询，sql选择、外键、触发器、视图、事务、多进程并发控制、流式复制、热备</li>
+<li>在PostgreSQL中，表可以设置从 父表 继承其特征</li>
+<li>可以安装多个扩展以向postgreSQL添加附加功能</li>
+</ul>
+<h2 id="postgreSQL命令语法"><a href="#postgreSQL命令语法" class="headerlink" title="postgreSQL命令语法"></a>postgreSQL命令语法</h2><p>查看PostgreSQL所有语句的语法：</p>
+<ul>
+<li>安装</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>装饰者模式</title>
+    <url>/blog/2019/08/17/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>装饰者模式</p>
+<a id="more"></a>
+
+<p>装饰者模式定义：<br></p>
+<blockquote>
+<p>动态的给一个对象添加一些额外的职责</p>
+</blockquote>
+<p>装饰者模式的优点：</p>
+<blockquote>
+<p>把类中的装饰功能从类中搬移去除，这样可以简化原有的类</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>activity四种启动模式</title>
+    <url>/blog/2019/07/31/activity%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<p>activity四种启动模式</p>
+<a id="more"></a>
+
+<p>Activity的4中启动模式</p>
+<p>Activity的android:launchMode属性</p>
+<pre><code>1、standard：标准模式，默认
+2、singleTop：Task栈顶复用模式
+3、singleTask：Task栈内服用模式
+3、singleInstance：全局单例模式</code></pre><p>standard：</p>
+<p>Activity是由任务栈管理的，每启动一个Activity每启动一个Activity，就会被放入栈中，按返回键，就会从栈顶移除一个Activity</p>
+<p>是默认的启动模式，即标准模式，每启动一个Activity，都会创建一个新的实例</p>
+<p>Fragment：</p>
+<pre><code>Fragment依赖于Activity，当Activty被销毁，Fragment也会被销毁
+Frament通过getActivity()可以获取所在的Activity；Activity通过FragmentManager的findFragmentById()或findFragmentByTag()获取Fragment
+Fragment和Activity时多对多的关系</code></pre>]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -119,23 +414,175 @@
       </tags>
   </entry>
   <entry>
-    <title>activity四种启动模式</title>
-    <url>/blog/2019/07/31/activity%E5%9B%9B%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p>activity四种启动模式</p>
+    <title>Adapter</title>
+    <url>/blog/2019/07/17/Adapter/</url>
+    <content><![CDATA[<p>Adapter</p>
 <a id="more"></a>
 
-<p>Activity的4中启动模式</p>
-<p>Activity的android:launchMode属性</p>
-<pre><code>1、standard：标准模式，默认
-2、singleTop：Task栈顶复用模式
-3、singleTask：Task栈内服用模式
-3、singleInstance：全局单例模式</code></pre><p>standard：</p>
-<p>Activity是由任务栈管理的，每启动一个Activity每启动一个Activity，就会被放入栈中，按返回键，就会从栈顶移除一个Activity</p>
-<p>是默认的启动模式，即标准模式，每启动一个Activity，都会创建一个新的实例</p>
-<p>Fragment：</p>
-<pre><code>Fragment依赖于Activity，当Activty被销毁，Fragment也会被销毁
-Frament通过getActivity()可以获取所在的Activity；Activity通过FragmentManager的findFragmentById()或findFragmentByTag()获取Fragment
-Fragment和Activity时多对多的关系</code></pre>]]></content>
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><pre><code>android中的UI控件都是跟Adapter（适配器）打交道的，
+了解并学会使用这个Adapter很重要Adapter是用来帮助填充数据的中间桥梁，简单点说就是：将各种数据以合适的形式显示到view上提供给用户看</code></pre><p><img src="https://i.imgur.com/YZ4jfBP.png" alt></p>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rabbitMQ</title>
+    <url>/blog/2019/07/16/rabbitMQ/</url>
+    <content><![CDATA[<p>rabbitMQ</p>
+<a id="more"></a>
+
+
+
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>RabbitMQ是一个erlang开发的基于AMQP（Advanced Message Queue）协议的开源实现。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面都非常的优秀，是当前最主流的消息中间件之一</p>
+<hr>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>AMQP：高级消息队列协议，它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。</p>
+<p>RabbitMQ最初起源于金融系统，用于在分布式系统中存储准发消息，在易用性、扩展性、高可用性等方面表现不俗</p>
+<p>1、可靠性<br><br>    RabbitMQ使用一些机制来保证可靠性、如持久化、传输确认、发布确认。</p>
+<p>2、灵活的路由<br><br>在消息进入队列之前，通过Exchange来路由消息的。对于典型的路由功能，RabbitMQ已经提供了一些内置Exchange来实现，针对更复杂的路由功能，可以将过个Exchange绑定在一起，也通过插件机制实现自己的Exchange。</p>
+<p>3、消息集群<br><br>多个RabbitMQ服务器可以组成一个集群</p>
+<p>4、高可用<br><br>队列可以在集群中的机器上进行镜像，使得在部分节点出问题的情况下队列任然可用。</p>
+<p>5、多语言客户端<br><br>RabbitMQ几乎支持多有常用语言，比如Java，.NET、Ruby等</p>
+<p>所有MQ产品从模型抽象上来说都是一样的过程：消费者订阅某个队列，生产者创建消息，然后发布到队列中，最后将消息发送到监听中的消息者。</p>
+]]></content>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Intent</title>
+    <url>/blog/2019/07/16/Intent/</url>
+    <content><![CDATA[<p>Intent</p>
+<a id="more"></a>
+
+<p>intent分为显示Intent和隐式Intent</p>
+<p>1、显示Intent</p>
+<pre><code>直接Intent i= new Intent(Context,acitvity.class)</code></pre><p>2、隐式Intent</p>
+<pre><code>&lt;activity android:name=&quot;&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;category android:name=&quot;android.itent.category.DEFAULT&quot;/&gt;
+        &lt;action android:name=&quot;自定义字符串&quot;/&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;</code></pre><p>使用Intent时直接new Intent(“配置的自定义字符串”)<br>    可以直接启动其他应用中的Activity</p>
+]]></content>
+      <tags>
+        <tag>android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>asyncTask多线程学习</title>
+    <url>/blog/2019/07/15/asyncTask%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="asyncTask多线程学习"><a href="#asyncTask多线程学习" class="headerlink" title="asyncTask多线程学习"></a>asyncTask多线程学习</h1><a id="more"></a>
+
+<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><pre><code>·一个Android已封装的好的轻量级异步类
+·属于抽象类，即使用时需实现子类
+
+public abstract class AsyncTask&lt;Params, Progress, Result&gt; { 
+ ... 
+ }</code></pre><hr>
+<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>1、 实现多线程<br><br>2、异步通信、消息传递，实现龚总线程与主线程（UI线程）之间的通信<br>即：将工作线程的执行结果传递给主线程，从而在主线程中执行相关的UI操作<br>从而保证线程安全</p>
+<hr>
+<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>·方便实现异步通信<br>不需要使用“任务线程（如继承Thread类）+Handler”的复杂组合<br><br>·节省资源<br><br>采用线程池的缓存线程+复用线程，避免了频繁创建与销毁线程多带来的系统资源的开销</p>
+<hr>
+<h1 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h1><p>AsyncTask类属于抽象类，即使用时需要实现子类</p>
+<pre><code>public abstract class AsyncTask&lt;Params,Progress,Result&gt;{
+...
+}
+//类中参数为3中泛型类型
+//整体作用：控制AsyncTash子类执行线程任务时各个阶段的返回类型
+//具体说明
+/*
+Params：开始异步任务执行时传入的参数类型，对应excute（）中传递的参数
+Progress：异步任务执行过程中，返回下载进入值的类型
+Result：异步任务执行完成后，返回的结果类型，与doInBackground()的返回值保持一致
+
+注：
+    使用时并不是所有类型都被使用
+    若无被使用，可用java.lang.Void类型代替
+    若有不同业务，需额外再一个AsyncTask的子类
+*/</code></pre><hr>
+<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><p>AsyncTask的使用步骤有3个：</p>
+<p>1、创建 AsyncTask 子类 &amp; 根据需求实现核心方法</p>
+<p>2、创建 AsyncTask子类的实例对象（即 任务实例）</p>
+<p>3、手动调用execute(（）从而执行异步线程任务</p>
+<pre><code>/**
+  * 步骤1：创建AsyncTask子类
+  * 注： 
+  *   a. 继承AsyncTask类
+  *   b. 为3个泛型参数指定类型；若不使用，可用java.lang.Void类型代替
+  *   c. 根据需求，在AsyncTask子类内实现核心方法
+  */
+
+  private class MyTask extends AsyncTask&lt;Params, Progress, Result&gt; {
+
+    ....
+
+  // 方法1：onPreExecute（）
+  // 作用：执行 线程任务前的操作
+  // 注：根据需求复写
+  @Override
+  protected void onPreExecute() {
+       ...
+    }
+
+  // 方法2：doInBackground（）
+  // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
+  // 注：必须复写，从而自定义线程任务
+  @Override
+  protected String doInBackground(String... params) {
+
+        ...// 自定义的线程任务
+
+        // 可调用publishProgress（）显示进度, 之后将执行onProgressUpdate（）
+         publishProgress(count);
+
+     }
+
+  // 方法3：onProgressUpdate（）
+  // 作用：在主线程 显示线程任务执行的进度
+  // 注：根据需求复写
+  @Override
+  protected void onProgressUpdate(Integer... progresses) {
+        ...
+
+    }
+
+  // 方法4：onPostExecute（）
+  // 作用：接收线程任务执行结果、将执行结果显示到UI组件
+  // 注：必须复写，从而自定义UI操作
+  @Override
+  protected void onPostExecute(String result) {
+
+     ...// UI操作
+
+    }
+
+  // 方法5：onCancelled()
+  // 作用：将异步任务设置为：取消状态
+  @Override
+    protected void onCancelled() {
+    ...
+    }
+  }
+
+/**
+  * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
+  * 注：AsyncTask子类的实例必须在UI线程中创建
+  */
+  MyTask mTask = new MyTask();
+
+/**
+  * 步骤3：手动调用execute(Params... params) 从而执行异步线程任务
+  * 注：
+  *    a. 必须在UI线程中调用
+  *    b. 同一个AsyncTask实例对象只能执行1次，若执行第2次将会抛出异常
+  *    c. 执行任务中，系统会自动调用AsyncTask的一系列方法：onPreExecute() 、doInBackground()、onProgressUpdate() 、onPostExecute() 
+  *    d. 不能手动调用上述方法
+  */
+  mTask.execute()；</code></pre><h1 id="关于-生命周期"><a href="#关于-生命周期" class="headerlink" title="关于 生命周期"></a>关于 生命周期</h1><p>结论<br>AsyncTask不与任何组件绑定生命周期<br>使用建议<br>在Activity 或 Fragment中使用 AsyncTask时，最好在Activity 或 Fragment的onDestory（）调用 cancel(boolean)；</p>
+<h2 id="关于-内存泄漏"><a href="#关于-内存泄漏" class="headerlink" title="关于 内存泄漏"></a>关于 内存泄漏</h2><p>结论<br><br>若AsyncTask被声明为Activity的非静态内部类，当Activity需销毁时，会因AsyncTask保留对Activity的引用 而导致Activity无法被回收，最终引起内存泄露<br><br>使用建议<br><br>AsyncTask应被声明为Activity的静态内部类</p>
+<h2 id="线程任务执行结果-丢失"><a href="#线程任务执行结果-丢失" class="headerlink" title="线程任务执行结果 丢失"></a>线程任务执行结果 丢失</h2><p><br>结论<br>当Activity重新创建时（屏幕旋转 / Activity被意外销毁时后恢复），之前运行的AsyncTask（非静态的内部类）持有的之前Activity引用已无效，故复写的onPostExecute()将不生效，即无法更新UI操作<br><br>使用建议<br><br>在Activity恢复时的对应方法 重启 任务线程</p>
+]]></content>
       <tags>
         <tag>android</tag>
       </tags>
@@ -302,168 +749,6 @@ private void sendNotification
       </tags>
   </entry>
   <entry>
-    <title>asyncTask多线程学习</title>
-    <url>/blog/2019/07/15/asyncTask%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h1 id="asyncTask多线程学习"><a href="#asyncTask多线程学习" class="headerlink" title="asyncTask多线程学习"></a>asyncTask多线程学习</h1><a id="more"></a>
-
-<h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><pre><code>·一个Android已封装的好的轻量级异步类
-·属于抽象类，即使用时需实现子类
-
-public abstract class AsyncTask&lt;Params, Progress, Result&gt; { 
- ... 
- }</code></pre><hr>
-<h1 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h1><p>1、 实现多线程<br><br>2、异步通信、消息传递，实现龚总线程与主线程（UI线程）之间的通信<br>即：将工作线程的执行结果传递给主线程，从而在主线程中执行相关的UI操作<br>从而保证线程安全</p>
-<hr>
-<h1 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h1><p>·方便实现异步通信<br>不需要使用“任务线程（如继承Thread类）+Handler”的复杂组合<br><br>·节省资源<br><br>采用线程池的缓存线程+复用线程，避免了频繁创建与销毁线程多带来的系统资源的开销</p>
-<hr>
-<h1 id="类定义"><a href="#类定义" class="headerlink" title="类定义"></a>类定义</h1><p>AsyncTask类属于抽象类，即使用时需要实现子类</p>
-<pre><code>public abstract class AsyncTask&lt;Params,Progress,Result&gt;{
-...
-}
-//类中参数为3中泛型类型
-//整体作用：控制AsyncTash子类执行线程任务时各个阶段的返回类型
-//具体说明
-/*
-Params：开始异步任务执行时传入的参数类型，对应excute（）中传递的参数
-Progress：异步任务执行过程中，返回下载进入值的类型
-Result：异步任务执行完成后，返回的结果类型，与doInBackground()的返回值保持一致
-
-注：
-    使用时并不是所有类型都被使用
-    若无被使用，可用java.lang.Void类型代替
-    若有不同业务，需额外再一个AsyncTask的子类
-*/</code></pre><hr>
-<h1 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h1><p>AsyncTask的使用步骤有3个：</p>
-<p>1、创建 AsyncTask 子类 &amp; 根据需求实现核心方法</p>
-<p>2、创建 AsyncTask子类的实例对象（即 任务实例）</p>
-<p>3、手动调用execute(（）从而执行异步线程任务</p>
-<pre><code>/**
-  * 步骤1：创建AsyncTask子类
-  * 注： 
-  *   a. 继承AsyncTask类
-  *   b. 为3个泛型参数指定类型；若不使用，可用java.lang.Void类型代替
-  *   c. 根据需求，在AsyncTask子类内实现核心方法
-  */
-
-  private class MyTask extends AsyncTask&lt;Params, Progress, Result&gt; {
-
-    ....
-
-  // 方法1：onPreExecute（）
-  // 作用：执行 线程任务前的操作
-  // 注：根据需求复写
-  @Override
-  protected void onPreExecute() {
-       ...
-    }
-
-  // 方法2：doInBackground（）
-  // 作用：接收输入参数、执行任务中的耗时操作、返回 线程任务执行的结果
-  // 注：必须复写，从而自定义线程任务
-  @Override
-  protected String doInBackground(String... params) {
-
-        ...// 自定义的线程任务
-
-        // 可调用publishProgress（）显示进度, 之后将执行onProgressUpdate（）
-         publishProgress(count);
-
-     }
-
-  // 方法3：onProgressUpdate（）
-  // 作用：在主线程 显示线程任务执行的进度
-  // 注：根据需求复写
-  @Override
-  protected void onProgressUpdate(Integer... progresses) {
-        ...
-
-    }
-
-  // 方法4：onPostExecute（）
-  // 作用：接收线程任务执行结果、将执行结果显示到UI组件
-  // 注：必须复写，从而自定义UI操作
-  @Override
-  protected void onPostExecute(String result) {
-
-     ...// UI操作
-
-    }
-
-  // 方法5：onCancelled()
-  // 作用：将异步任务设置为：取消状态
-  @Override
-    protected void onCancelled() {
-    ...
-    }
-  }
-
-/**
-  * 步骤2：创建AsyncTask子类的实例对象（即 任务实例）
-  * 注：AsyncTask子类的实例必须在UI线程中创建
-  */
-  MyTask mTask = new MyTask();
-
-/**
-  * 步骤3：手动调用execute(Params... params) 从而执行异步线程任务
-  * 注：
-  *    a. 必须在UI线程中调用
-  *    b. 同一个AsyncTask实例对象只能执行1次，若执行第2次将会抛出异常
-  *    c. 执行任务中，系统会自动调用AsyncTask的一系列方法：onPreExecute() 、doInBackground()、onProgressUpdate() 、onPostExecute() 
-  *    d. 不能手动调用上述方法
-  */
-  mTask.execute()；</code></pre><h1 id="关于-生命周期"><a href="#关于-生命周期" class="headerlink" title="关于 生命周期"></a>关于 生命周期</h1><p>结论<br>AsyncTask不与任何组件绑定生命周期<br>使用建议<br>在Activity 或 Fragment中使用 AsyncTask时，最好在Activity 或 Fragment的onDestory（）调用 cancel(boolean)；</p>
-<h2 id="关于-内存泄漏"><a href="#关于-内存泄漏" class="headerlink" title="关于 内存泄漏"></a>关于 内存泄漏</h2><p>结论<br><br>若AsyncTask被声明为Activity的非静态内部类，当Activity需销毁时，会因AsyncTask保留对Activity的引用 而导致Activity无法被回收，最终引起内存泄露<br><br>使用建议<br><br>AsyncTask应被声明为Activity的静态内部类</p>
-<h2 id="线程任务执行结果-丢失"><a href="#线程任务执行结果-丢失" class="headerlink" title="线程任务执行结果 丢失"></a>线程任务执行结果 丢失</h2><p><br>结论<br>当Activity重新创建时（屏幕旋转 / Activity被意外销毁时后恢复），之前运行的AsyncTask（非静态的内部类）持有的之前Activity引用已无效，故复写的onPostExecute()将不生效，即无法更新UI操作<br><br>使用建议<br><br>在Activity恢复时的对应方法 重启 任务线程</p>
-]]></content>
-      <tags>
-        <tag>android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/blog/2020/04/06/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>postgresql_01</title>
-    <url>/blog/2019/08/31/postgresql-01/</url>
-    <content><![CDATA[<p>postgresql</p>
-<a id="more"></a>
-
-<h2 id="什么是PostgreSQL？"><a href="#什么是PostgreSQL？" class="headerlink" title="什么是PostgreSQL？"></a>什么是PostgreSQL？</h2><p>PostgreSQL是一个功能强大的开源对象数据库管理系统（ORDBMS）。用于安全的存储数据，支持最佳做法，并允许在处理请求时检索它们。</p>
-<p>PostgreSQL（也称为Post-gress-Q-L）由PostgreSQL全球开发集团（全球志愿者团队）开发。</p>
-<h2 id="PostgreSQL的特点"><a href="#PostgreSQL的特点" class="headerlink" title="PostgreSQL的特点"></a>PostgreSQL的特点</h2><ul>
-<li>postgresql可在所有主要操作系统上运行</li>
-<li>postgresql支持文本，图像、声音和视频，并包括用于C/C++，java、Perl、Python、Ruby、Tcl和开放数据链接（ODBC）的编程接口</li>
-<li>postgresql支持sql的许多功能，例如复杂sql查询，sql选择、外键、触发器、视图、事务、多进程并发控制、流式复制、热备</li>
-<li>在PostgreSQL中，表可以设置从 父表 继承其特征</li>
-<li>可以安装多个扩展以向postgreSQL添加附加功能</li>
-</ul>
-<h2 id="postgreSQL命令语法"><a href="#postgreSQL命令语法" class="headerlink" title="postgreSQL命令语法"></a>postgreSQL命令语法</h2><p>查看PostgreSQL所有语句的语法：</p>
-<ul>
-<li>安装</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>sql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>通过包名判断Android应用是否在后台运行</title>
     <url>/blog/2019/07/04/hexo%E6%90%AD%E5%BB%BA%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
     <content><![CDATA[<h2 id="Android中判断应用是否在后台运行"><a href="#Android中判断应用是否在后台运行" class="headerlink" title="Android中判断应用是否在后台运行"></a><center>Android中判断应用是否在后台运行<center></center></center></h2><a id="more"></a>
@@ -532,290 +817,5 @@ public static boolean isAlive(String  paclageName, Context context){
       <tags>
         <tag>Android</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>rabbitMQ</title>
-    <url>/blog/2019/07/16/rabbitMQ/</url>
-    <content><![CDATA[<p>rabbitMQ</p>
-<a id="more"></a>
-
-
-
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>RabbitMQ是一个erlang开发的基于AMQP（Advanced Message Queue）协议的开源实现。用于在分布式系统中存储转发消息，在易用性、扩展性、高可用性等方面都非常的优秀，是当前最主流的消息中间件之一</p>
-<hr>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>AMQP：高级消息队列协议，它是应用层协议的一个开放标准，为面向消息的中间件设计，基于此协议的客户端与消息中间件可传递消息，并不受产品、开发语言等条件的限制。AMQP的主要特征是面向消息、队列、路由（包括点对点和发布/订阅）、可靠性、安全。</p>
-<p>RabbitMQ最初起源于金融系统，用于在分布式系统中存储准发消息，在易用性、扩展性、高可用性等方面表现不俗</p>
-<p>1、可靠性<br><br>    RabbitMQ使用一些机制来保证可靠性、如持久化、传输确认、发布确认。</p>
-<p>2、灵活的路由<br><br>在消息进入队列之前，通过Exchange来路由消息的。对于典型的路由功能，RabbitMQ已经提供了一些内置Exchange来实现，针对更复杂的路由功能，可以将过个Exchange绑定在一起，也通过插件机制实现自己的Exchange。</p>
-<p>3、消息集群<br><br>多个RabbitMQ服务器可以组成一个集群</p>
-<p>4、高可用<br><br>队列可以在集群中的机器上进行镜像，使得在部分节点出问题的情况下队列任然可用。</p>
-<p>5、多语言客户端<br><br>RabbitMQ几乎支持多有常用语言，比如Java，.NET、Ruby等</p>
-<p>所有MQ产品从模型抽象上来说都是一样的过程：消费者订阅某个队列，生产者创建消息，然后发布到队列中，最后将消息发送到监听中的消息者。</p>
-]]></content>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>springboot注解</title>
-    <url>/blog/2019/10/03/springboot%E6%B3%A8%E8%A7%A3/</url>
-    <content><![CDATA[<h1 id="spring-boot-注解"><a href="#spring-boot-注解" class="headerlink" title="spring boot 注解"></a>spring boot 注解</h1><a id="more"></a>
-
-<p>@Configuration：告诉Spring这是一个配置类</p>
-<p>@Bean : 给容器注册一个Bean；类型为返回值的类型，id默认是用方法名作为id</p>
-<p>@ComponentScan(value=””)：包扫描</p>
-<pre><code>1、 value：指定需要扫描的包
-2、 excludeFilters = Filter[]：指定扫描的时候排除的规则
-    例如：
-        excludeFilters = {
-        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
-
-        //如果需要过滤多个条件
-        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class}) //排除controller注解的类    
-    }
-3、 includeFilters = Filter[]：指定扫描的时候只需要包含的哪些组件
-    例如：
-    includeFilters = {
-        @Filter(type=FilterType.ANNONTATION,classes=Controller.class), //排除controller注解的类
-
-        //如果需要过滤多个条件
-        @Filter(type=FilterType.ANNONTATION,classes={Controller.class,Service.class},useDefaultFilters = false) //排除controller注解的类    
-    }</code></pre><p>@Filter：过滤规则</p>
-<pre><code>FilterType.ANNONTATION：按照注释进行过滤
-FilterType.ASSIGNABLE_TYPE: 按照给定的类型进行过滤（@Filter(type=FilterType.ASSIGNABLE_TYPE,classes={xxxService.class}）</code></pre><p>@ComponentScans(value = {})：指定多个componentScan规则</p>
-<p>@Scope：设置组件的作用域（springboot 默认bean对象为单例）</p>
-<h2 id="自定义TypeFilter指定过滤规则-FilterType-CUSTOM"><a href="#自定义TypeFilter指定过滤规则-FilterType-CUSTOM" class="headerlink" title="自定义TypeFilter指定过滤规则 FilterType.CUSTOM"></a>自定义TypeFilter指定过滤规则 FilterType.CUSTOM</h2><pre><code>public class MyTypeFilter implements TypeFilter{
-
-    /**
-        metadataReader: 读取到当前正在扫描的类的信息
-        metadataReaderFactory: 可以获取到其他任何类信息的
-    */
-    @Override
-    public boolean match(MetadataReader metadataReader,
-    MetadataReaderFactory metadataReaderFactory) throw IOException {
-
-        //获取当前类的注解的信息
-        AnnotationMetadata = annotionMetadata = metadataReader.getAnnotationMetadata();
-
-        //获取当前正在扫描的类的信息
-        ClassMetadata classMetadata = metadataReader.getClassMetadata();
-
-        //获取当前类的资源(类的路径)
-        Resource resource = metadataReader.getResource();
-
-        //    进行自定义判断
-
-        return false;//false 表示不匹配
-    }
-}</code></pre><h3 id="Java配置"><a href="#Java配置" class="headerlink" title="Java配置"></a>Java配置</h3><blockquote>
-<p>Java配置是通过 @Configuration 和 @Bean 来实现的。</p>
-</blockquote>
-<ul>
-<li>@Configuration 声明当前类是一个配置累，相当于一个Spring配置的xml文件。</li>
-<li>@Bean 注解再方法上，声明当前方法的返回值为一个Bean对象</li>
-</ul>
-<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><blockquote>
-<p>AOP：面向切面编程，相对于OOP面向对象编程</p>
-<p>Spring 的 AOP 的存在目的就是为了解耦，AOP 可以让一组类共享相同的行为，再 OOP 中只能通过继承类和实现接口，来使代码耦合度增强，且类继承只能为单继承，阻碍更多行为添加到一组类上，AOP 弥补了 OOP 的不足。</p>
-<p>Spring 支持 AspectJ 的注解式切面编程：</p>
-</blockquote>
-<ol>
-<li>使用 @AspectJ 声明一个切面</li>
-<li>使用 @After、@Before、@Around 定义建言（advice），可直接将拦截规则（切点）作为参数。 </li>
-<li>其中@After、@Before、@Around 参数的拦截规则为切点（PointCut），为了使切点复用，，可使用@PointCut 专门定义拦截规则，然后再@After、@Before、@Around 的参数中调用。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>spring boot</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码整洁之道</title>
-    <url>/blog/2019/09/01/%E4%BB%A3%E7%A0%81%E6%95%B4%E6%B4%81%E7%9F%A5%E9%81%93-01/</url>
-    <content><![CDATA[<p>代码整洁之道</p>
-<a id="more"></a>
-
-<h2 id="有意义的命名"><a href="#有意义的命名" class="headerlink" title="有意义的命名"></a>有意义的命名</h2><p>不管变量还是方法名，尽可能使用完整的英文单词，而不是使用简写或者某个字母代替。</p>
-<h2 id="避免误导"><a href="#避免误导" class="headerlink" title="避免误导"></a>避免误导</h2><p>例如：accountList 来指称一组账户，除非它真的是list类型，</p>
-]]></content>
-      <tags>
-        <tag>study</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>动态代理</title>
-    <url>/blog/2019/10/04/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</url>
-    <content><![CDATA[<h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><a id="more"></a>
-
-<h2 id="1-什么是代理"><a href="#1-什么是代理" class="headerlink" title="1 什么是代理"></a>1 什么是代理</h2><blockquote>
-<p>通过代理控制对象的访问,可以详细访问某个对象的方法，在这个方法调用处理，或调用后处理。既(AOP微实现)  ,AOP核心技术面向切面编程</p>
-</blockquote>
-<h2 id="2-代理应用场景"><a href="#2-代理应用场景" class="headerlink" title="2 代理应用场景"></a>2 代理应用场景</h2><blockquote>
-<p>SpringAOP、事物原理、日志打印、权限控制、远程调用、安全代理 可以隐蔽真实角色</p>
-</blockquote>
-<h2 id="3-代理的分类"><a href="#3-代理的分类" class="headerlink" title="3 代理的分类"></a>3 代理的分类</h2><blockquote>
-<p>静态代理(静态定义代理类)</p>
-</blockquote>
-<blockquote>
-<p>动态代理(动态生成代理类)</p>
-</blockquote>
-<blockquote>
-<p>Jdk自带动态代理</p>
-</blockquote>
-<blockquote>
-<p>Cglib 、javaassist（字节码操作库）</p>
-</blockquote>
-<h3 id="3-1-什么是静态代理"><a href="#3-1-什么是静态代理" class="headerlink" title="3.1 什么是静态代理"></a>3.1 什么是静态代理</h3><blockquote>
-<p>由程序员创建或工具生成代理类的源码，再编译代理类。所谓静态也就是在程序运行前就已经存在代理类的字节码文件，代理类和委托类的关系在运行前就确定了</p>
-</blockquote>
-<pre><code>public interface IUserDao {
-    void save();
-}
-public class UserDao implements IUserDao {
-    public void save() {
-        System.out.println(&quot;已经保存数据...&quot;);
-    }
-}
-代理类
-public class UserDaoProxy implements IUserDao {
-    private IUserDao target;
-
-    public UserDaoProxy(IUserDao iuserDao) {
-        this.target = iuserDao;
-    }
-
-    public void save() {
-        System.out.println(&quot;开启事物...&quot;);
-        target.save();
-        System.out.println(&quot;关闭事物...&quot;);
-    }
-
-}</code></pre><h3 id="3-2-什么是动态代理"><a href="#3-2-什么是动态代理" class="headerlink" title="3.2 什么是动态代理"></a>3.2 什么是动态代理</h3><blockquote>
-<p>1.代理对象,不需要实现接口;</p>
-</blockquote>
-<blockquote>
-<p>2.代理对象的生成,是利用JDK的API,动态的在内存中构建代理对象(需要我们指定创建代理对象/目标对象实现的接口的类型)</p>
-</blockquote>
-<blockquote>
-<p>3.动态代理也叫做:JDK代理,接口代理</p>
-</blockquote>
-<h4 id="3-2-1-JDK动态代理"><a href="#3-2-1-JDK动态代理" class="headerlink" title="3.2.1 JDK动态代理"></a>3.2.1 JDK动态代理</h4><blockquote>
-<p>1) 原理：是根据类加载器和接口创建代理类（此代理类是接口的实现类，所以必须使用接口 面向接口生成代理，位于java.lang.reflect包下）</p>
-</blockquote>
-<blockquote>
-<p>2)实现方式： </p>
-</blockquote>
-<blockquote>
-<ol>
-<li>通过实现InvocationHandler接口创建自己的调用处理器 IvocationHandler handler = new InvocationHandlerImpl(…); </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li>通过为Proxy类指定ClassLoader对象和一组interface创建动态代理类Class clazz = Proxy.getProxyClass(classLoader,new Class[]{…}); </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="3">
-<li>通过反射机制获取动态代理类的构造函数，其参数类型是调用处理器接口类型Constructor constructor = clazz.getConstructor(new Class[]{InvocationHandler.class}); </li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="4">
-<li>通过构造函数创建代理类实例，此时需将调用处理器对象作为参数被传入Interface Proxy = (Interface)constructor.newInstance(new Object[] (handler))</li>
-</ol>
-</blockquote>
-<p><font style="color:red"> 缺点：jdk动态代理，必须是面向接口，目标业务类必须实现接口 </font></p>
-<pre><code>// 每次生成动态代理类对象时,实现了InvocationHandler接口的调用处理器对象 
-public class InvocationHandlerImpl implements InvocationHandler {
-    private Object target;// 这其实业务实现类对象，用来调用具体的业务方法
-    // 通过构造函数传入目标对象
-    public InvocationHandlerImpl(Object target) {
-        this.target = target;
-    }
-
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Object result = null;
-        System.out.println(&quot;调用开始处理&quot;);
-        result = method.invoke(target, args);
-        System.out.println(&quot;调用结束处理&quot;);
-        return result;
-    }
-
-    public static void main(String[] args) throws NoSuchMethodException, SecurityException, InstantiationException,
-            IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        // 被代理对象
-        IUserDao userDao = new UserDao();
-        InvocationHandlerImpl invocationHandlerImpl = new InvocationHandlerImpl(userDao);
-        ClassLoader loader = userDao.getClass().getClassLoader();
-        Class&lt;?&gt;[] interfaces = userDao.getClass().getInterfaces();
-        // 主要装载器、一组接口及调用处理动态代理实例
-        IUserDao newProxyInstance = (IUserDao) Proxy.newProxyInstance(loader, interfaces, invocationHandlerImpl);
-        newProxyInstance.save();
-    }
-
-}</code></pre><h3 id="3-3-CGLIB动态代理"><a href="#3-3-CGLIB动态代理" class="headerlink" title="3.3 CGLIB动态代理"></a>3.3 CGLIB动态代理</h3><blockquote>
-<p>原理：利用asm开源包，对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理</p>
-</blockquote>
-<h4 id="3-3-1-什么是CGLIB动态代理"><a href="#3-3-1-什么是CGLIB动态代理" class="headerlink" title="3.3.1 什么是CGLIB动态代理"></a>3.3.1 什么是CGLIB动态代理</h4><blockquote>
-<p>使用cglib实现动态代理，并不要求委托必须实现接口，底层采用asm字节码生成框架生成代理类的字节码</p>
-</blockquote>
-<pre><code>public class CglibProxy implements MethodInterceptor {
-    private Object targetObject;
-    // 这里的目标类型为Object，则可以接受任意一种参数作为被代理类，实现了动态代理
-    public Object getInstance(Object target) {
-        // 设置需要创建子类的类
-        this.targetObject = target;
-        Enhancer enhancer = new Enhancer();
-        enhancer.setSuperclass(target.getClass());
-        enhancer.setCallback(this);
-        return enhancer.create();
-    }
-
-    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-        System.out.println(&quot;开启事物&quot;);
-        Object result = proxy.invoke(targetObject, args);
-        System.out.println(&quot;关闭事物&quot;);
-        // 返回代理对象
-        return result;
-    }
-    public static void main(String[] args) {
-        CglibProxy cglibProxy = new CglibProxy();
-        UserDao userDao = (UserDao) cglibProxy.getInstance(new UserDao());
-        userDao.save();
-    }
-}</code></pre><h3 id="3-4-CGLIB-动态代理与-JDK-动态代理的区别"><a href="#3-4-CGLIB-动态代理与-JDK-动态代理的区别" class="headerlink" title="3.4 CGLIB 动态代理与 JDK 动态代理的区别"></a>3.4 CGLIB 动态代理与 JDK 动态代理的区别</h3><blockquote>
-<p>JDK动态代理是<font style="color:red">利用发射机制生成一个实现代理接口的匿名类</font>,在调用具体方法前调用InvookeHandler来处理</p>
-<p>JDK动态代理只能对实现了接口的类生成代理，而不能针对类</p>
-</blockquote>
-<blockquote>
-<p>而CGLIB动态代理是<font style="color:red">利用asm开源包</font>,对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理。</p>
-<p>CGLIB是针对类实现代理，主要是对指定的类生成一个子类，覆盖其中的方法。因为是继承，所以该类或方法最好不要声明成final，final可以组织继承和多态</p>
-</blockquote>
-<h3 id="3-5-spring-中如何使用"><a href="#3-5-spring-中如何使用" class="headerlink" title="3.5 spring 中如何使用"></a>3.5 spring 中如何使用</h3><blockquote>
-<p>1、如果目标对象实现了接口，默认情况下会采用JDK动态代理实现AOP;</p>
-<p>2、如果目标对象实现了接口，可以强制使用CGLIB实现AOP</p>
-<p>3、如果目标对象没有实现了接口，必须采用CGLIB库，spring会自动在JDK和CGLIB之间转换 </p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>装饰者模式</title>
-    <url>/blog/2019/08/17/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</url>
-    <content><![CDATA[<p>装饰者模式</p>
-<a id="more"></a>
-
-<p>装饰者模式定义：<br></p>
-<blockquote>
-<p>动态的给一个对象添加一些额外的职责</p>
-</blockquote>
-<p>装饰者模式的优点：</p>
-<blockquote>
-<p>把类中的装饰功能从类中搬移去除，这样可以简化原有的类</p>
-</blockquote>
-]]></content>
   </entry>
 </search>
